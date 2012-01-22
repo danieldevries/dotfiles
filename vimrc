@@ -3,6 +3,7 @@ set nocompatible " use vim settings rather then vi settings
 filetype off
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
+filetype plugin indent on
 
 " ------------------------------------------------------------------------------------
 " Text
