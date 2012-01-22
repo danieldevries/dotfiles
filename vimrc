@@ -22,10 +22,18 @@ set listchars=tab:▸\ ,eol:¬
 " Searching
 " ------------------------------------------------------------------------------------
 
-set hlsearch            " highlight search terms
+set gdefault            " search 'global' on lines 
 set ignorecase          " ignore case when searching
 set smartcase           " ignore case if search pattern is lowercase, sensitive otherwise
 set incsearch           " show matches as you type
+set showmatch           " 
+set hlsearch            " 
+
+                        " fix the broken regex handling
+nnoremap / /\v
+vnoremap / /\v
+                        " clear search text in buffer
+nnoremap <leader><space> :noh<cr>
 
 " ------------------------------------------------------------------------------------
 " UI
