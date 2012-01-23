@@ -122,3 +122,13 @@ if has("autocmd")
 
   autocmd bufwritepost .vimrc source $MYVIMRC
 endif
+
+" show syntax stack for word under cursor
+" http://vimcasts.org/episodes/creating-colorschemes-for-vim/
+nmap <C-S-P> :call <SID>SyntaxStack<CR>
+function! <SID>SyntaxStack()
+  if !exists("*sysnstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
