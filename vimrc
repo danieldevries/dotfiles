@@ -53,7 +53,7 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 " ------------------------------------------------------------------------------------
-" Remappings
+" Re/unmappings
 " ------------------------------------------------------------------------------------
 
 let mapleader=","
@@ -102,6 +102,16 @@ map <silent> e <Plug>CamelCaseMotion_e
 sunmap w
 sunmap b
 sunmap e
+
+" Bubble single lines
+nmap <C-Up> [e
+nmap <C-Down> ]e
+" Bubble multiple lines
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+
+" Visually select the text that was last edited/pasted
+nmap gV `[v`]
 
 " ------------------------------------------------------------------------------------
 " Other Stuff
