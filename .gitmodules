@@ -7,3 +7,6 @@
 [submodule "vim/bundle/ack.vim"]
 	path = vim/bundle/ack.vim
 	url = git://github.com/mileszs/ack.vim.git
+[submodule "vim/bundle/xterm-color-table.vim"]
+	path = vim/bundle/xterm-color-table.vim
+	url = https://github.com/guns/xterm-color-table.vim
