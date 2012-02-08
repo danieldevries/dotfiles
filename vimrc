@@ -1,4 +1,4 @@
-set nocompatible " use vim settings rather then vi settings
+set nocompatible       " use vim settings rather then vi settings
 
 filetype off
 call pathogen#infect()
@@ -10,11 +10,12 @@ filetype plugin indent on
 
 set tabstop=2           " a tab is two spaces
 set softtabstop=2       " remove two spaces as a tab when using <backspace>
-set tabstop=4           " 
+set tabstop=2           " 
 set expandtab           " expand tabs by default (overwritable per filetype later)
 set autoindent          " 
 set smartindent         " 
 set nolist              " don't show hidden characters by default
+set showmatch           " show matching parentheses
 set listchars=tab:▸\ ,eol:¬
 
 " ------------------------------------------------------------------------------------
@@ -25,12 +26,7 @@ set gdefault            " search 'global' on lines
 set ignorecase          " ignore case when searching
 set smartcase           " ignore case if search pattern is lowercase, sensitive otherwise
 set incsearch           " show matches as you type
-set showmatch           " 
-set hlsearch            " 
-
-                        " fix the broken regex handling
-nnoremap / /\v
-vnoremap / /\v
+set hlsearch            " highlight matches
                         " clear search text in buffer
 nnoremap <leader><space> :noh<cr>
 
@@ -38,18 +34,20 @@ nnoremap <leader><space> :noh<cr>
 " UI
 " ------------------------------------------------------------------------------------
 
-set number              " 
-set ruler               " 
-set wildmenu            " 
+set number              " show line numbers
+set ruler               " show ruler
+set wildmenu            " use the wild menu
 set wildignore=*.swp,*.bak
 set lazyredraw          " don't update while in macro
 set ttyfast             " improves redrawing
 set ch=2                " command line height
+"set errorbells          " 
+"set visualbell          " no beeping, just visualbells
 
 if &t_Co > 2 || has("gui_running")
   syntax on
   set guifont=Monaco:h14
-  colorscheme ir_black
+  colorscheme ir_black 
 endif
 
 " ------------------------------------------------------------------------------------
@@ -58,21 +56,31 @@ endif
 
 let mapleader=","
 
+" autocompletion remapped to <Tab>
+imap <Tab> <C-N>
+
+" show line endings and tabs
 nmap <leader>l :set list!<CR>
+
+" shortcut to edit vimrc
 nmap <leader>v :tabedit $MYVIMRC<CR>
 
-" set <tab> to match bracket pairs
-nnoremap <tab> %
-vnoremap <tab> %
+" Bubble single lines
+nmap <C-Up> [e
+nmap <C-Down> ]e
 
-" avoid hitting F1 when aiming for ESC
-map <F1> <ESC>
+" Bubble multiple lines
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+
+" Visually select the text that was last edited/pasted
+nmap gV `[v`]
 
 " ------------------------------------------------------------------------------------
 " Mouse Support (yeah really)
 " ------------------------------------------------------------------------------------
 
-set mousemodel=extend 
+set mousemodel=extend
 set mouse=a
 set selectmode=mouse
 set mousefocus
@@ -90,32 +98,17 @@ sunmap w
 sunmap b
 sunmap e
 
-" Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
-" Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
-
-" Visually select the text that was last edited/pasted
-nmap gV `[v`]
-
 " ------------------------------------------------------------------------------------
 " Other Stuff
 " ------------------------------------------------------------------------------------
 
 if has("autocmd")
   filetype plugin indent on
-
+  autocmd bufwritepost  vimrc source $MYVIMRC
   autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
-" show syntax stack for word under cursor
-" http://vimcasts.org/episodes/creating-colorschemes-for-vim/
-nmap <C-S-P> :call <SID>SyntaxStack<CR>
-function! <SID>SyntaxStack()
-  if !exists("*sysnstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
+set nobackup                     " don't write backupfiles
+set nowritebackup                " same
+set directory=$HOME/.vim/tmp//,. " keep swapfiles at one location
+
