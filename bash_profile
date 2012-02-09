@@ -3,6 +3,7 @@
 . ~/.dotfiles/bash/paths
 . ~/.dotfiles/bash/config
 . ~/.dotfiles/bash/aliases
+. ~/.dotfiles/bash/lol
 
 if [ -f /usr/local/bin/rbenv ]; then
   eval "$(rbenv init -)"
