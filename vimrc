@@ -97,6 +97,7 @@ set mousefocus
 " ------------------------------------------------------------------------------------
 
 nnoremap <leader>a :Ack
+map <leader>n :NERDTreeToggle<CR>
 
 map <silent> w <Plug>CamelCaseMotion_w
 map <silent> b <Plug>CamelCaseMotion_b
