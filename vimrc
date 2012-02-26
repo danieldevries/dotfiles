@@ -47,7 +47,7 @@ set ch=2                " command line height
 if &t_Co > 2 || has("gui_running")
   syntax on
   set guifont=Monaco:h14
-  colorscheme ir_black 
+  colorscheme argonaut 
 endif
 
 " ------------------------------------------------------------------------------------
