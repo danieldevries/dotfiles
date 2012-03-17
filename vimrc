@@ -111,6 +111,14 @@ if has("autocmd")
   autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunction
+nmap <C-S-P> :call <SID>SynStack()<CR>
+
 set nobackup                     " don't write backupfiles
 set nowritebackup                " same
 set directory=$HOME/.vim/tmp//,. " keep swapfiles at one location
