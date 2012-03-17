@@ -1,7 +1,8 @@
 # shortcuts
 alias g="git"
 alias v="vim"
-alias m="mate -w"
+alias m="mate"
+alias r="rake"
 alias be="bundle exec"
 alias md="mkdir -p $1 && cd $1"
 alias reload='source ~/.bash_profile'
@@ -51,3 +52,8 @@ then
   alias ll="gls -l --color"
   alias la='gls -A --color'
 fi
+
+function take {
+  mkdir $1
+  cd $1
+}
