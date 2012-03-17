@@ -43,6 +43,9 @@ set ttyfast             " improves redrawing
 set ch=2                " command line height
 "set errorbells          " 
 "set visualbell          " no beeping, just visualbells
+set scrolloff=2         " number of lines from vertical scrolling
+set sidescrolloff=15    " number of columns from horizontal scrolling
+set sidescroll=1        " number of columns to scroll at a time
 
 if &t_Co > 2 || has("gui_running")
   syntax on
