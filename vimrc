@@ -56,14 +56,8 @@ endif
 
 let mapleader=","
 
-" autocompletion remapped to <Tab>
-imap <Tab> <C-N>
-
 " show line endings and tabs
 nmap <leader>l :set list!<CR>
-
-" shortcut to edit vimrc
-nmap <leader>v :tabedit $MYVIMRC<CR>
 
 " Bubble single lines
 nmap <C-Up> [e
@@ -97,6 +91,7 @@ set mousefocus
 " ------------------------------------------------------------------------------------
 
 nnoremap <leader>a :Ack
+
 map <leader>n :NERDTreeToggle<CR>
 
 map <silent> w <Plug>CamelCaseMotion_w
@@ -119,4 +114,3 @@ endif
 set nobackup                     " don't write backupfiles
 set nowritebackup                " same
 set directory=$HOME/.vim/tmp//,. " keep swapfiles at one location
-
