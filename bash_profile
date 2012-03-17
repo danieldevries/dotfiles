@@ -9,6 +9,6 @@ if [ -f /usr/local/bin/rbenv ]; then
   eval "$(rbenv init -)"
 fi
 
-if [ -f ~/.localrc ]; then
-    source ~/.localrc # use .localrc for system specific settings
+if [ -f ~/.localrc ]; then # use .localrc for system specific settings
+  source ~/.localrc
 fi
