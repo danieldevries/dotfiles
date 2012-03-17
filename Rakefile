@@ -5,24 +5,24 @@ desc "install dotfiles in user's home directory."
 task :install do
   overwrite_all = false
   Dir['*'].each do |file|
-    next if %w(Rakefile bash README.md).include? file
+    next if %w(Rakefile bash zsh README.md).include? file
     target = "#{ENV['HOME']}/.#{file}"
     
     unless File.exist? target
-      link file
+      Dotfiles.link file
     else
       if File.identical? file, target
-        puts "identical ~/.#{file}" 
+        puts "identical ~/.#{file}"
       elsif overwrite_all
-        replace file
+        Dotfiles.replace file
       else
         print "overwrite ~/.#{file}? [ynaq] "
         case $stdin.gets.chomp
         when 'a'
-          replace file
+          Dotfiles.replace file
           overwrite_all = true
         when 'y'
-          replace file
+          Dotfiles.replace file
         when 'q'
           puts "quitting"
           exit
@@ -36,17 +36,21 @@ end
 
 task :default => :install
 
-def link path
-  puts "linking ~/.#{path}"
-  system %Q{ln -s "$PWD/#{path}" "$HOME/.#{path}"}
-end
+module Dotfiles
+  class << self
+    def link path
+      puts "linking ~/.#{path}"
+      system %Q{ln -s "$PWD/#{path}" "$HOME/.#{path}"}
+    end
 
-def remove path
-  puts "removing ~/.#{path}"
-  system %Q{rm -rf "$HOME/#{path}"}
-end
+    def remove path
+      puts "removing ~/.#{path}"
+      system %Q{rm -rf "$HOME/#{path}"}
+    end
 
-def replace path
-  remove_file path
-  link_file path
+    def replace path
+      remove path
+      link path
+    end
+  end
 end
