@@ -50,7 +50,7 @@ set sidescroll=1        " number of columns to scroll at a time
 if &t_Co > 2 || has("gui_running")
   syntax on
   set guifont=Monaco:h14
-  colorscheme argonaut 
+  colorscheme railscasts
 endif
 
 " ------------------------------------------------------------------------------------
