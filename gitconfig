@@ -1,0 +1,30 @@
+[user]
+  name = Daniël de Vries
+  email = danielpuntje@me.com
+[difftool "Kaleidoscope"]
+  cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+[difftool]
+  prompt = false
+[diff]
+  tool = Kaleidoscope
+[core]
+	quotepath = false
+[alias]
+  co     = checkout
+  br     = branch
+  st     = status
+  wtf    = !$ZSH/bin/git-wtf
+  count  = !git shortlog -sn
+[color]
+  diff   = auto
+  status = auto
+  branch = auto
+[core]
+  excludesfile = ~/.gitignore
+  editor = vim
+[apply]
+  whitespace = nowarn
+[github]
+  user = danieldevries
+[mergetool]
+  keepBackup = false
