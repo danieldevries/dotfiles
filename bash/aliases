@@ -4,7 +4,6 @@ alias v="vim"
 alias m="mate"
 alias r="rake"
 alias be="bundle exec"
-alias md="mkdir -p $1 && cd $1"
 alias reload='source ~/.bash_profile'
 
 # file system
@@ -27,7 +26,6 @@ alias manpreview="man -t $1 | open -f -a Preview"
 alias mp="manpreview"
 
 # http traffic
-alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 # finder and spotlight stuff
