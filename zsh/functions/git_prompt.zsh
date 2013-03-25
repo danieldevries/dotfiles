@@ -1,3 +1,4 @@
+# http://ianloic.com/2011/06/25/git-zsh-prompt/
 setopt prompt_subst
 autoload colors zsh/terminfo
 colors
