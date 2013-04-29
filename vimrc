@@ -53,6 +53,8 @@ if &t_Co > 2 || has("gui_running")
   colorscheme railscasts
 endif
 
+set statusline=%{fugitive#statusline()}
+
 " ------------------------------------------------------------------------------------
 " Re/unmappings
 " ------------------------------------------------------------------------------------
@@ -121,6 +123,16 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunction
 nmap <C-S-P> :call <SID>SynStack()<CR>
+
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+nnoremap <C-n> :call NumberToggle()<cr>
 
 set nobackup                     " don't write backupfiles
 set nowritebackup                " same
