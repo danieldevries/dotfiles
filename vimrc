@@ -50,7 +50,7 @@ set sidescroll=1        " number of columns to scroll at a time
 if &t_Co > 2 || has("gui_running")
   syntax on
   set guifont=Monaco:h14
-  colorscheme railscasts
+  colorscheme greyhouse
 endif
 
 set statusline=%{fugitive#statusline()}
@@ -81,6 +81,26 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 map <C-w> <C-w>w
+
+set wildmenu
+set wildmode=longest,list
+
+map <Up> :echo "Nee" <cr>
+map <Right> :echo "Nee" <cr>
+map <Left> :echo "Nee" <cr>
+map <Down> :echo "Nee" <cr>
+
+function! InsertTabWrapper()
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<tab>"
+  else
+    return "\<c-p>"
+  endif
+endfunction
+
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <s-tab> <c-n>
 
 " ------------------------------------------------------------------------------------
 " Mouse Support (yeah really)
