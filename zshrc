@@ -7,3 +7,8 @@ for config_file ($ZSH/**/*.zsh) source $config_file
 [[ -f ~/.localrc ]] && . ~/.localrc
 
 autoload -U compinit && compinit
+
+if which rbenv > /dev/null;
+then
+	eval "$(rbenv init -)";
+fi
