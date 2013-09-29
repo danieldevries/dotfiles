@@ -1,56 +1,68 @@
 # based on Ryan Bates install rake task
 # see https://github.com/ryanb/dotfiles
 
-desc "install dotfiles in user's home directory."
+task default: :install
+
+desc "install dotfiles in the home directory."
 task :install do
-  include Dotfiles::InstallMethods
-
   overwrite_all = false
-  Dir['*'].each do |file|
-    next if %w(Rakefile bash zsh README.md).include? file
-    target = "#{ENV['HOME']}/.#{file}"
+  symlinks.each do |symlink|
+    target = target(symlink)
+    symlink = [ENV['PWD'], symlink].join('/')
 
-    unless File.exist? target
-      install_file file
-    else
-      if File.identical?( file, target)
-        puts "identical ~/.#{file}"
+    if File.exists?(target)
+      if File.identical?(symlink, target)
+        puts "symlink identical #{target}"
       elsif overwrite_all
-        replace_file file
+        replace_file(symlink, target)
       else
-        print "overwrite ~/.#{file}? [ynaq] "
+        print "overwrite #{target}? [ynaq] "
         case $stdin.gets.chomp
         when 'a'
-          replace_file file
+          replace_file(symlink, target)
           overwrite_all = true
         when 'y'
-          replace_file file
+          replace_file(symlink, target)
         when 'q'
           puts "quitting"
           exit
         else
-          puts "skipping ~/.#{file}"
+          puts "skipping #{target}"
         end
       end
+    else
+      link_file(symlink, target)
     end
   end
 end
 
-task :default => :install
-
-module Dotfiles
-  module InstallMethods
-    def install_file path
-      puts "linking ~/.#{path}"
-      system %Q{ln -s "$PWD/#{path}" "$HOME/.#{path}"}
-    end
-    def remove_file path
-      puts "removing ~/.#{path}"
-      system %Q{rm -rf "$HOME/#{path}"}
-    end
-    def replace_file path
-      remove_file path
-      install_file path
-    end
+desc "remove all symlinked files"
+task :uninstall do
+  symlinks.each do |symlink|
+    target = target(symlink)
+    remove_file(target) if File.symlink?(target)
   end
+end
+
+def symlinks
+  Dir['**/*.symlink']
+end
+
+def target(symlink)
+  "#{ENV['HOME']}/.#{symlink.sub(/\.symlink/, '')}"
+end
+
+def link_file(symlink, target)
+  puts "linking #{symlink} to #{target}"
+  system "ln -s #{symlink} #{target}"
+end
+
+def replace_file(symlink, target)
+  remove_file(target)
+  link_file(symlink, target)
+end
+
+def remove_file(path)
+  puts "removing #{path}"
+  system "rm -rf #{path}"
 end
