@@ -103,15 +103,6 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
 
 " ------------------------------------------------------------------------------------
-" Mouse Support (yeah really)
-" ------------------------------------------------------------------------------------
-
-set mousemodel=extend
-set mouse=a
-set selectmode=mouse
-set mousefocus
-
-" ------------------------------------------------------------------------------------
 " Plugins
 " ------------------------------------------------------------------------------------
 
@@ -130,6 +121,8 @@ if has("autocmd")
   filetype plugin indent on
   autocmd bufwritepost  vimrc source $MYVIMRC
   autocmd bufwritepost .vimrc source $MYVIMRC
+
+  autocmd BufNewFile,BufRead *.ru,Gemfile,Vagrantfile set filetype=ruby
 endif
 
 function! <SID>SynStack()
