@@ -32,6 +32,8 @@ bind -r l select-window -t :+
 
 bind -r J swap-pane -D
 bind -r K swap-pane -U
+bind -r Left swap-window -t -1
+bind -r Right swap-window -t +1
 
 bind-key -r < resize-pane -L 3
 bind-key -r > resize-pane -R 3
