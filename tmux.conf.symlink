@@ -79,6 +79,7 @@ set -g visual-activity on
 bind Space  next-window
 bind BSpace previous-window
 bind C-a    last-window
-bind \      confirm-before kill-server
+bind }      confirm-before -p "kill-server? #S (y/n)" kill-server
+bind \      confirm-before -p "kill-window #W? (y/n)" kill-window
 bind s      set status
 
