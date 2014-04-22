@@ -3,6 +3,8 @@
 set -g default-terminal "screen-256color"
 
 unbind C-b
+unbind Up
+unbind Down
 
 set -g prefix C-a
 bind C-a send-prefix
