@@ -6,6 +6,17 @@
 [alias]
   count  = !git shortlog -sn
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  co = checkout
+  cl = clone
+  br = branch
+  s  = status
+  st = status
+  f  = fetch
+  a  = add
+  d  = diff
+  ds = diff --staged
+  pl = pull
+  ps = push
 [color]
   diff   = auto
   status = auto
