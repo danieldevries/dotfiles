@@ -3,6 +3,7 @@ alias g="git"
 alias v="vim"
 alias m="mate"
 alias r="rake"
+alias c="clear"
 alias be="bundle exec"
 alias reload='source ~/.zshrc && source ~/.zshenv'
 
