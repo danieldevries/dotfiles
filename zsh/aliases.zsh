@@ -38,6 +38,3 @@ alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && k
 alias disablespotlight="sudo mdutil -a -i off"
 alias enablespotlight="sudo mdutil -a -i on"
 
-# postgres
-alias psstart='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
-alias psstop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
