@@ -4,13 +4,17 @@
 [core]
 	quotepath = false
 [alias]
-  count  = !git shortlog -sn
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  count = !git shortlog -sn
+  amend = commit --amend
+  prune-all=!git remote | xargs -n 1 git remote prune
+  l  = log --no-merge
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  ld = log --stat --no-merges
+  cm = commit
   co = checkout
   cl = clone
-  br = branch
+  b  = branch
   s  = status
-  st = status
   f  = fetch
   a  = add
   d  = diff
