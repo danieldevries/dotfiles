@@ -6,6 +6,7 @@
 [alias]
   count = !git shortlog -sn
   amend = commit --amend
+  praise = blame
   prune-all=!git remote | xargs -n 1 git remote prune
   l  = log --no-merge
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
