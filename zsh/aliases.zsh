@@ -1,6 +1,7 @@
 # shortcuts
 alias g="git"
 alias v="vim"
+alias mv="mvim"
 alias m="mate"
 alias r="rake"
 alias c="clear"
@@ -37,4 +38,3 @@ alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && 
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 alias disablespotlight="sudo mdutil -a -i off"
 alias enablespotlight="sudo mdutil -a -i on"
-
