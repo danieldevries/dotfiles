@@ -15,7 +15,6 @@ alias et="emptytrash"
 
 # folder navigation
 alias ..='cd ..'
-alias ...= 'cd ../..'
 alias ~='cd'
 alias l='ls -la'
 alias ll='ls -l'
