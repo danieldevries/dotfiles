@@ -5,26 +5,64 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
-Plugin 'kien/ctrlp.vim'
 
+Plugin 'kien/ctrlp.vim'
 Plugin 'chriskempson/base16-vim'
-set background=dark
-colorscheme base16-default 
+
+call vundle#end()
+
+filetype plugin indent on
 
 set backspace=indent,eol,start
 
-syntax enable 
-
-set number 
-set hidden 
-set history=100 
-
 let mapleader=","
 
-map <leader>rr :source ~/.vimrc<CR>
+map <leader>r :source ~/.vimrc<CR>
+map <leader><space> :noh<cr>
 
 nnoremap <C-J> <C-W><C-J> " Ctrl-j down
 nnoremap <C-K> <C-W><C-K> " Ctrl-k up
 nnoremap <C-L> <C-W><C-L> " Ctrl-l right	
 nnoremap <C-H> <C-W><C-H> " Ctrl-h left
+
+" backups and swap
+
+set nobackup
+set nowritebackup
+set noswapfile
+
+" whitespace
+
+set nowrap
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set listchars=tab:▸\ ,eol:¬
+
+" searching
+
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+set laststatus=2
+
+" UI
+
+set ruler
+set number
+set scrolloff=2
+
+set guifont=Monaco:h12
+set background=dark
+colorscheme base16-default
+
+set lazyredraw " performance
+set ttyfast
+
+" File Types
+
+autocmd BufNewFile,BufRead {Gemfile,Rakefile,Vagrantfile,*.ru} set ft=ruby
 
