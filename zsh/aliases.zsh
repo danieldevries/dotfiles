@@ -1,7 +1,6 @@
 # shortcuts
 alias g="git"
 alias v="vim"
-alias mv="mvim"
 alias m="mate"
 alias r="rake"
 alias c="clear"
