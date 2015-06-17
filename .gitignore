@@ -1,0 +1,4 @@
+.DS_Store
+
+vim.symlink/bundle/**/*
+!vim.symlink/bundle/Vundle.vim
