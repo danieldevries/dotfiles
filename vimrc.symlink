@@ -9,7 +9,6 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 
 Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-surround'
 Plugin 'Raimondi/delimitMate'
@@ -17,16 +16,11 @@ Plugin 'bkad/CamelCaseMotion'
 
 Plugin 'w0ng/vim-hybrid'
 
-Plugin 'tpope/vim-rails'
-Plugin 'scrooloose/syntastic'
-
 map <C-n> :NERDTreeToggle<CR>
 
 map <S-W> <Plug>CamelCaseMotion_w
 map <S-B> <Plug>CamelCaseMotion_b
 map <S-E> <Plug>CamelCaseMotion_e
-
-let g:syntastic_haskell_checkers = ['ghc']
 
 call vundle#end()
 
@@ -81,19 +75,11 @@ set background=dark
 set lazyredraw " performance
 set ttyfast
 
-" Syntastic
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
 " File Types
 
 autocmd BufNewFile,BufRead {Gemfile,Rakefile,Vagrantfile,*.ru} set ft=ruby
 autocmd BufNewFile,BufRead *.md set filetype=markdown
+
+" ctrl-p
+set wildignore+="*/.git/*,generated\\**"
 
