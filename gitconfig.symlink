@@ -28,7 +28,7 @@
   branch = auto
 [core]
   excludesfile = ~/.gitignore
-  editor = vim
+  editor = nvim
 [apply]
   whitespace = nowarn
 [github]
@@ -36,4 +36,4 @@
 [mergetool]
   keepBackup = false
 [push]
-	default = simple
+  default = simple
