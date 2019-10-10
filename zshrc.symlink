@@ -2,6 +2,13 @@ export DOTFILES=$HOME/.dotfiles
 export ZSH=$DOTFILES/zsh
 export PROJECTS=~/code/projects
 
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export PATH="/usr/local/bin:/usr/local/Cellar:$HOME/.rbenv/bin:$DOTFILES/bin:$HOME/.local/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export EDITOR="nvim"
+
 for config_file ($ZSH/**/*.zsh) source $config_file
 
 [[ -f ~/.localrc ]] && . ~/.localrc
@@ -10,8 +17,14 @@ autoload -U compinit && compinit
 
 if which rbenv > /dev/null;
 then
-	eval "$(rbenv init -)";
+  eval "$(rbenv init -)";
 fi
 
 bindkey '^R' history-incremental-search-backward
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/daniel/google-cloud-sdk 2/path.zsh.inc' ]; then . '/Users/daniel/google-cloud-sdk 2/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/daniel/google-cloud-sdk 2/completion.zsh.inc' ]; then . '/Users/daniel/google-cloud-sdk 2/completion.zsh.inc'; fi
 
