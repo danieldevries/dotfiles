@@ -1,11 +1,10 @@
 # shortcuts
 alias g="git"
-alias v="vim"
-alias m="mate"
+alias v="nvim"
 alias r="rake"
 alias c="clear"
 alias be="bundle exec"
-alias reload='source ~/.zshrc && source ~/.zshenv'
+alias reload='source ~/.zshrc'
 
 # file system
 alias fs="stat -f \"%z bytes\""
@@ -21,7 +20,7 @@ alias ll='ls -l'
 # ip address
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en1"
-alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'" 
+alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 
 # man pages in Preview
 alias manpreview="man -t $1 | open -f -a Preview"
