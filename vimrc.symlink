@@ -1,0 +1,77 @@
+set termguicolors
+set nocompatible
+
+filetype plugin on
+syntax on
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'itchyny/lightline.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf.vim'
+
+Plugin 'nanotech/jellybeans.vim'
+
+call vundle#end()
+colorscheme jellybeans
+
+set background=dark
+
+autocmd FileType html,scss,css,ruby,eruby,yaml,coffee,javascript,crystal,json,axlsx setlocal et ts=2 sw=2 ai
+autocmd FileType haskell setlocal et ts=4 sw=4 ai
+autocmd FileType vim setlocal et ts=2 sw=2 ai
+autocmd VimResized * :wincmd =
+
+set noswapfile
+set nowrap
+set ruler
+set ignorecase
+set smartcase
+set showmatch
+set number
+set relativenumber
+set noshowmode
+set laststatus=2
+
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
+set scrolloff=4
+
+let mapleader=","
+
+nnoremap <F3> :set list!<CR>
+nnoremap <C-p> :FZF<CR>
+
+map <leader>r :source ~/.vimrc<CR>
+map <leader><space> :noh<crk
+
+nnoremap <C-J> <C-W><C-J> " Ctrl-j down
+nnoremap <C-K> <C-W><C-K> " Ctrl-k up
+nnoremap <C-L> <C-W><C-L> " Ctrl-l right
+nnoremap <C-H> <C-W><C-H> " Ctrl-h left
+nnoremap <C-W> <C-W><C-W> " Ctrl-w next
+nnoremap <leader>g :GitGutterToggle<CR>
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/ " show trailing whitespace
+match ExtraWhitespace /\s\+$\| \+\ze\t/ " show trailing whitespace and spaces before a tab
+
+let g:netwr_list_hide = '\(^\|\s\s\)\zs\.\S\'
+let g:lightline = {
+  \   'colorscheme': 'jellybeans',
+  \   'active': {
+  \     'left':[ [ 'mode', 'paste' ],
+  \              [ 'readonly', 'filename', 'modified' ]
+  \     ],
+  \     'right':[ [ 'lineinfo' ],
+  \               [ 'filetype', 'gitbranch' ] ]
+  \   },
+  \   'component_function': {
+  \     'gitbranch': 'fugitive#head'
+  \   }
+  \ }
+

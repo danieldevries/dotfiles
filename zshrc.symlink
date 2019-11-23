@@ -28,3 +28,5 @@ if [ -f '/Users/daniel/google-cloud-sdk 2/path.zsh.inc' ]; then . '/Users/daniel
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/daniel/google-cloud-sdk 2/completion.zsh.inc' ]; then . '/Users/daniel/google-cloud-sdk 2/completion.zsh.inc'; fi
 
+export PATH="/User/daniel/google-cloud-sdk 2/bin:$PATH"
+

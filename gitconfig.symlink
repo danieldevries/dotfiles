@@ -2,7 +2,7 @@
   name = Daniël de Vries
   email = danielpunt@gmail.com
 [core]
-	quotepath = false
+  quotepath = false
 [alias]
   count = !git shortlog -sn
   amend = commit --amend
@@ -28,7 +28,7 @@
   branch = auto
 [core]
   excludesfile = ~/.gitignore
-  editor = nvim
+  editor = vim
 [apply]
   whitespace = nowarn
 [github]
