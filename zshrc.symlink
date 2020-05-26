@@ -1,17 +1,27 @@
 export DOTFILES=$HOME/.dotfiles
 export ZSH=$DOTFILES/zsh
-export PROJECTS=~/code/projects
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-export PATH="/usr/local/bin:/usr/local/Cellar:$HOME/.rbenv/bin:$DOTFILES/bin:$HOME/.local/bin:$PATH"
+export PATH="/usr/local/bin:$HOME/.rbenv/bin:$DOTFILES/bin:$HOME/.local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export EDITOR="nvim"
+export EDITOR="vim"
+
+export LSCOLORS="exfxcxdxbxegedabagacad"
+export CLICOLOR=true
+
+fpath=($ZSH/functions $fpath)
+autoload -U $ZSH/functions/*(:t)
+
+setopt EXTENDED_HISTORY # add timestamps to history
+
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
 
 for config_file ($ZSH/**/*.zsh) source $config_file
 
-[[ -f ~/.localrc ]] && . ~/.localrc
+[[ -f ~/.local/.zshrc ]] && . ~/.local/.zshrc
 
 autoload -U compinit && compinit
 
@@ -22,11 +32,30 @@ fi
 
 bindkey '^R' history-incremental-search-backward
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/daniel/google-cloud-sdk 2/path.zsh.inc' ]; then . '/Users/daniel/google-cloud-sdk 2/path.zsh.inc'; fi
+# matches case insensitive
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/daniel/google-cloud-sdk 2/completion.zsh.inc' ]; then . '/Users/daniel/google-cloud-sdk 2/completion.zsh.inc'; fi
+# shortcuts
+alias g="git"
+alias c="clear"
+alias be="bundle exec"
+alias reload='source ~/.zshrc'
 
-export PATH="/User/daniel/google-cloud-sdk 2/bin:$PATH"
+# folder navigation
+alias ..='cd ..'
+alias ~='cd'
+alias l='ls -la'
+alias ls='ls -l'
 
+# http traffic
+alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+
+autoload colors && colors
+
+export PS1="%{$fg[green]%}λ%{$reset_color%} %{$fg[yellow]%}%~%{$reset_color%} %{$fg[red]%}➜%{$reset_color%}  "
+export RPS1='$(__git_prompt)'
+
+function take() {
+    mkdir -p $1
+    cd $1
+}
