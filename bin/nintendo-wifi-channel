@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# based on https://nims11.wordpress.com/2012/04/27/hostapd-the-linux-way-to-create-virtual-wifi-access-point/comment-page-25/#comments
+#       IP address:    192.168.2.11/24
+#       Gateway:       192.168.2.254
+
+# DNS should be set to:
+#  * 164.132.44.106 for mystery gifts
+#  * 178.62.43.212 for poke classic network
+# https://www.shacknews.com/article/108512/how-to-unlock-gen-4-and-5-pokemon-mystery-events-in-2018
+# http://pkmnclassic.net/
+
+[[ "$OSTYPE" != "linux-gnu" ]] && echo "only for linux"  && exit 1
+[[ $UID != 0 ]] && echo "please run as root" && exit 1
+
+INCOMING=enp0s20f0u4u1
+OUTGOING=wlp3s0
+
+while getopts "i:incoming:o:outgoing" opt; do
+  case ${opt} in
+    i|incoming) INCOMING=${OPTARG};;
+    o|outgoing) OUTGOING=${OPTARG};;
+  esac
+done
+
+systemctl stop NetworkManager.service
+
+rfkill unblock wlan
+
+sleep 2
+
+ip link set $OUTGOING down
+ip addr flush dev $OUTGOING
+ip link set $OUTGOING up
+ip addr add 10.0.0.1/24 dev $OUTGOING
+
+sleep 2
+
+if [ -z "$(ps -e | grep dnsmasq)" ]
+then
+ dnsmasq -C /home/daniel/.config/dnsmasq.conf
+fi
+
+iptables -t nat -A POSTROUTING -o $INCOMING -j MASQUERADE
+iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i $OUTGOING -o $INCOMING -j ACCEPT
+
+sysctl -w net.ipv4.ip_forward=1
+
+hostapd /home/daniel/.config/hostapd.conf
+
+killall dnsmasq
+
+systemctl start NetworkManager.service
+

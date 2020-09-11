@@ -1,0 +1,7 @@
+interface=wlp3s0
+driver=nl80211
+ssid=nintendo-wifi-channel
+channel=1
+ignore_broadcast_ssid=2
+auth_algs=1 # wep
+wep_default_key=0
