@@ -22,6 +22,7 @@
   ds = diff --staged
   pl = pull
   ps = push
+  find-branch = !sh -c \"git branch -a | grep -v remotes | grep $1 | head -n 1 | xargs git checkout\"
 [color]
   diff   = auto
   status = auto
