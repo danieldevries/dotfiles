@@ -44,11 +44,19 @@ alias reload='source ~/.zshrc'
 # folder navigation
 alias ..='cd ..'
 alias ~='cd'
-alias l='ls -la'
-alias ls='ls -l'
+alias ls='ls -shN --color=auto --group-directories-first'
+alias l='ls -l'
+alias mv='mv -iv'
+alias cp='cp -iv'
 
-# http traffic
-alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+alias cpu='ps axch -o cmd:15,%cpu --sort=-%cpu | head'
+alias ram='ps axch -o cmd:15,%mem --sort=-%mem | head'
+
+# :)
+alias fuck='sudo !!'
+alias please='sudo !!'
+
+alias weer='curl wttr.in'
 
 autoload colors && colors
 
