@@ -67,3 +67,9 @@ function take() {
     mkdir -p $1
     cd $1
 }
+
+if [[ "$OSTYPE" != "darwin"* ]]; then
+   alias pbcopy="xclip -selection c"
+   alias pbpaste="xclip -selection clipboard -o"
+fi
+
