@@ -1,0 +1,24 @@
+[color]
+    ui = true
+[core]
+    editor = nvim
+[alias]
+    a = add
+    s = status
+    b = branch
+    d = diff
+    f = fetch
+    cl = clone
+    cm = commit
+    co = checkout
+    ds = diff --staged
+    ps = push
+    pl = pull
+    amend = commit --amend
+    count = shortlog -sn
+    find-branch = !sh -c \"git branch -a | grep -v remotes | grep $1 | head -n 1 | xargs git checkout\"
+    praise = blame
+    prune-all=!git remote | xargs -n 1 git remote prune
+[user]
+    name = Daniël de Vries
+    email = contact@danieldevries.eu
