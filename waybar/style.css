@@ -1,0 +1,56 @@
+* {
+    font-family: Jet Brains Mono Nerd Font;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+window#waybar {
+    background-color: rgba(43, 44, 52, 0.8);
+    color: #ffffff;
+    transition: background-color 0.5s;
+}
+
+#window {
+    font-family: 'Sarasa Gothic SC', sans-serif;
+}
+
+#battery,
+#cpu,
+#memory,
+#backlight,
+#network,
+#pulseaudio,
+#tray,
+#mode,
+#idle_inhibitor,
+#keyboard-state,
+#scratchpad {
+    padding: 5px 8px;
+    color: #ffffff;
+}
+
+#workspaces button, #mode {
+    padding: 3px 6px;
+    background-color: transparent;
+    color: #ffffff;
+}
+
+#workspaces button:hover,
+#workspaces button.active {
+    background-color: #6272a4;
+    box-shadow: inset 0 -3px #ffffff;
+}
+
+#workspaces button.urgent {
+    background-color: #b54f4f;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
