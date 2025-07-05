@@ -1,4 +1,4 @@
-import = [
+general.import = [
   "~/.config/alacritty/themes/nightfox.toml"
 ]
 
@@ -6,7 +6,17 @@ import = [
 term = "xterm-256color"
 
 [font]
-size = 7
+size = 10
 
 [font.normal]
 family = "Jet Brains Mono Nerd Font"
+
+[window]
+padding.x = 5
+padding.y = 5
+#opacity = 0.9
+
+[keyboard]
+bindings = [
+  { key = "F11", action = "ToggleFullScreen" }
+]

@@ -14,6 +14,7 @@
     ds = diff --staged
     ps = push
     pl = pull
+    sw = switch
     amend = commit --amend
     count = shortlog -sn
     find-branch = !sh -c \"git branch -a | grep -v remotes | grep $1 | head -n 1 | xargs git checkout\"
