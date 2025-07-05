@@ -31,12 +31,6 @@ if type waybar &> /dev/null; then
   ln -sf "$HOME/dotfiles/waybar" "$HOME/.config"
 fi
 
-if type picom &> /dev/null; then
-  rm -rf "$HOME/.config/picom"
-  mkdir "$HOME/.config/picom"
-  ln -sf "$HOME/dotfiles/picom/picom.conf" "$HOME/.config/picom/picom.conf"
-fi
-
 if type nvim &> /dev/null; then
   rm -rf "$HOME/.config/nvim"
   ln -s "$HOME/dotfiles/nvim" "$HOME/.config"
