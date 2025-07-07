@@ -1,6 +1,26 @@
 #!/usr/bin/env ruby
 
-require 'irb/completion'
+module IrbUtils
+  def clear
+    system('clear')
+  end
+end
+
+include IrbUtils
+
+{
+  'irb/completion': nil,
+  'interactive_editor': nil,
+  'awesome_print': -> { AwesomePrint.irb! }
+}.each do |gem_name, setup|
+  begin
+    require gem_name.to_s
+
+    setup.call if setup.respond_to?(:call)
+  rescue LoadError
+  end
+end
 
 IRB.conf[:PROMPT_MODE] = :SIMPLE
+IRB.conf[:AUTO_INDENT] = true
 
