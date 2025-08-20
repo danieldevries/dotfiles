@@ -29,9 +29,6 @@
       "8": "8",
       "9": "9",
     },
-    "persistent-workspaces": {
-      "*": 3
-    }
   },
   "clock": {
     "format": "{:%A %H:%M}",
