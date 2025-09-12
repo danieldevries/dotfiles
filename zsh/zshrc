@@ -21,13 +21,19 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f '/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ]; then
+  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+if [ -f '/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ]; then
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
 source $DOTFILES/zsh/scripts.zsh
 source $DOTFILES/zsh/prompt.zsh
 
 if [ $(command -v "fzf") ]; then
-  source /usr/share/fzf/completion.zsh
-  source /usr/share/fzf/key-bindings.zsh
+  source <(fzf --zsh)
 fi
 
 if type asdf > /dev/null; then
