@@ -1,23 +1,29 @@
 -- nvim 0.12+ config
 
+vim.g.mapleader = ' '
+
 vim.opt.termguicolors = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
-vim.opt.winborder = 'rounded'
+vim.opt.winborder = 'solid'
 vim.opt.swapfile = false
 vim.opt.undofile = false
 vim.opt.signcolumn = 'yes:1'
 vim.opt.tabstop = 2
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-vim.opt.cmdheight = 0
+vim.opt.cmdheight = 1
 
-vim.g.mapleader = ' '
+vim.g.netrw_banner = 0
+vim.g.netrw_browse_split = 4
+vim.g.netrw_altv = 1
+vim.g.netrw_liststyle = 3
 
 vim.pack.add({
 	'https://github.com/EdenEast/nightfox.nvim',
-	'https://github.com/echasnovski/mini.pick',
+	'https://github.com/nvim-mini/mini.pick',
+	'https://github.com/nvim-mini/mini.pairs',
 	'https://github.com/echasnovski/gitsigns.nvim',
 })
 
@@ -36,15 +42,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
 	end
 })
 
-vim.diagnostic.config({
-	diagnostic = {
-		current_line = true
-	},
-})
-
 vim.cmd.colorscheme('nightfox')
 
 require('mini.pick').setup()
+require('mini.pairs').setup()
 require('gitsigns').setup()
 
 vim.keymap.set('n', '<leader>ff', ':Pick files<CR>')
@@ -61,3 +62,5 @@ vim.keymap.set('n', '<Leader>lf', vim.lsp.buf.format)
 vim.keymap.set('n', '<Leader>gd', vim.lsp.buf.definition)
 
 vim.keymap.set('n', 'Q', '<nop>')
+
+vim.keymap.set('n', '<leader>e', ':20Lex<CR>')
